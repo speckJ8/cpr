@@ -35,9 +35,9 @@ func init() {
     Licenses["mit"] = &mit
 }
 
-func IsMIT(license *string) *License {
-    if strings.Contains(*license, "MIT ") ||
-        strings.Contains(*license, "Permission is hereby granted, free of charge") {
+func IsMIT(license string) *License {
+    if strings.Contains(license, "MIT ") ||
+        strings.Contains(license, "Permission is hereby granted, free of charge") {
         return &mit
     }
     return nil
