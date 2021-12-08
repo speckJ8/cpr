@@ -29,14 +29,14 @@ func init() {
     Licenses["gpl3"] = &gpl3
 }
 
-func IsGPL3(license *string) *License {
-    if strings.Contains(*license, "GPL") ||
-        strings.Contains(*license, "GNU GENERAL PUBLIC LICENSE") ||
-        strings.Contains(*license, "GNU General Pulic License") {
-        if strings.Contains(*license, "v3") ||
-            strings.Contains(*license, "3.0") ||
-            strings.Contains(*license, "Version 3") ||
-            strings.Contains(*license, "version 3") {
+func IsGPL3(license string) *License {
+    if strings.Contains(license, "GPL") ||
+        strings.Contains(license, "GNU GENERAL PUBLIC LICENSE") ||
+        strings.Contains(license, "GNU General Pulic License") {
+        if strings.Contains(license, "v3") ||
+            strings.Contains(license, "3.0") ||
+            strings.Contains(license, "Version 3") ||
+            strings.Contains(license, "version 3") {
             return &gpl3
         }
     }
