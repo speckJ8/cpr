@@ -13,5 +13,7 @@ on existing files and update authors in existing files.`,
 }
 
 func Execute() error {
+    rootCmd.AddCommand(newCmd)
+
     return rootCmd.Execute()
 }
