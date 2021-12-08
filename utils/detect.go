@@ -19,10 +19,10 @@ func DetectLicense() *licenses.License {
     }
 
     var license = string(licenseContents)
-    if l := licenses.IsMIT(&license); l != nil {
+    if l := licenses.IsMIT(license); l != nil {
         return l
     }
-    if l := licenses.IsGPL3(&license); l != nil {
+    if l := licenses.IsGPL3(license); l != nil {
         return l
     }
 
