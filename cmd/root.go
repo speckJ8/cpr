@@ -12,6 +12,15 @@ create files with with copyright banners, update copyright dates
 on existing files and update authors in existing files.`,
 }
 
+var (
+    license string
+    author string
+    email string
+    short bool
+    all bool
+    extensions []string
+)
+
 func Execute() error {
     rootCmd.AddCommand(newCmd)
 

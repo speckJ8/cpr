@@ -24,13 +24,6 @@ var newCmd = &cobra.Command {
     Run: newFile,
 }
 
-var (
-    license string
-    author string
-    email string
-    short bool
-)
-
 func init() {
     newCmd.Flags().StringVarP(&author, "author", "a", "", "Author name")
     newCmd.Flags().StringVarP(&email, "email", "e", "", "Author email")
