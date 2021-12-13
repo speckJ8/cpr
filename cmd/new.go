@@ -58,7 +58,7 @@ func newFile(cmd *cobra.Command, args []string) {
     } else {
         li = licenses.Licenses[license]
         if li == nil {
-            fmt.Printf("unkonwn license `%s`\n", license)
+            fmt.Printf("unknown license `%s`\n", license)
             os.Exit(1)
         }
     }
