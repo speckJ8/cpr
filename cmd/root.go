@@ -23,6 +23,6 @@ var (
 
 func Execute() error {
     rootCmd.AddCommand(newCmd)
-
+    rootCmd.AddCommand(addCmd)
     return rootCmd.Execute()
 }
