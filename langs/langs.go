@@ -21,15 +21,17 @@ func init() {
         "js":    &cWrap,
         "ts":    &cWrap,
         "java":  &cWrap,
-        "py":    &Lang { WrapInComments: python },
+        "py":    { WrapInComments: python },
+        "S":     { WrapInComments: asm },
+        "s":     { WrapInComments: asm },
     }
 }
 
 func c(contents string) string {
     var lines = strings.Split(contents, "\n")
     var comment = "/**\n"
-    for _, line := range lines {
-        comment += " * " + line + "\n"
+    for l := range lines {
+        comment += " * " + lines[l] + "\n"
     }
     comment += " */\n\n"
     return comment
@@ -38,9 +40,18 @@ func c(contents string) string {
 func python(contents string) string {
     var lines = strings.Split(contents, "\n")
     var comment = "\"\"\"\n"
-    for _, line := range lines {
-        comment += "" + line + "\n"
+    for l := range lines {
+        comment += "" + lines[l] + "\n"
     }
     comment += "\"\"\"\n\n"
+    return comment
+}
+
+func asm(contents string) string {
+    var lines = strings.Split(contents, "\n")
+    var comment = ""
+    for l := range lines {
+        comment += "# " + lines[l]
+    }
     return comment
 }
