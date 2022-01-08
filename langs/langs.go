@@ -51,7 +51,8 @@ func asm(contents string) string {
     var lines = strings.Split(contents, "\n")
     var comment = ""
     for l := range lines {
-        comment += "# " + lines[l]
+        comment += "# " + lines[l] + "\n"
     }
+    comment += "\n"
     return comment
 }
