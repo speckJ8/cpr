@@ -3,6 +3,7 @@ package cmd
 import (
 	"bytes"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 	"text/template"
@@ -96,17 +97,25 @@ func addToFile(cmd *cobra.Command, args []string) {
             os.Exit(1)
         }
 
-        contents, err := os.ReadFile(file)
+        sourceFile, err := os.OpenFile(file, os.O_CREATE|os.O_RDWR, os.ModePerm)
+        if err != nil {
+            fmt.Println(err.Error())
+            os.Exit(1)
+        }
+        defer sourceFile.Close()
+
+        contents, err := io.ReadAll(sourceFile)
         if err != nil {
             fmt.Println(err.Error())
             os.Exit(1)
         }
 
         contents = append([]byte(lang.WrapInComments(noticeString)), contents...)
-        err = os.WriteFile(file, contents, os.ModePerm)
+        _, err = sourceFile.Write(contents)
         if err != nil {
             fmt.Printf("failed to write to %s: %s\n", file, err.Error())
             os.Exit(1)
         }
+        sourceFile.Close()
     }
 }
